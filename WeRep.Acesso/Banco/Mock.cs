@@ -27,7 +27,7 @@ namespace Acesso.Banco
             parametro.numero = republica_dados.numero;
             parametro.numero_moradores = republica_dados.numero_moradores;
             parametro.rua = republica_dados.rua;
-            parametro.vagas = republica_dados.vagas;
+            parametro.vagas = republica_dados.capacidade;
             lista_republicas.Add(parametro);
             string lista_serial = new JavaScriptSerializer().Serialize(lista_republicas);
         }

@@ -11,5 +11,6 @@ namespace WeRep.Models
         public int id_user { get; set; }
         public string nome { get; set; }
         public string senha { get; set; }
+        public int tipo { get; set; }
     }
 }
