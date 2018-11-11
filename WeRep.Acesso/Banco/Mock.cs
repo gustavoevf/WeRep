@@ -18,11 +18,19 @@ namespace Acesso.Banco
         public void Cadastro(string nome, string senha)
         {
             string readText = File.ReadAllText(path_usuario);
-            List<UsuarioModel> lista_usuarios;
-            lista_usuarios = new JavaScriptSerializer().Deserialize<List<UsuarioModel>>(readText);
+            List<UsuarioModel> lista;
+            lista = new JavaScriptSerializer().Deserialize<List<UsuarioModel>>(readText);
+
+            List<UsuarioModel> listaOrdernada = new List<UsuarioModel>();
+            if (listaOrdernada.Count > 0) { listaOrdernada = lista.OrderBy(x => x.id_user).ToList(); }
+            else { listaOrdernada = lista; }
             UsuarioModel novo_usuario = new UsuarioModel{ nome = nome, senha = senha, tipo = 1 };
-            lista_usuarios.Add(novo_usuario);
-            string json = new JavaScriptSerializer().Serialize(lista_usuarios);
+            if (listaOrdernada.Count > 0)
+                novo_usuario.id_user = listaOrdernada[listaOrdernada.Count - 1].id_user + 1;
+            else
+                novo_usuario.id_user = 1;
+            listaOrdernada.Add(novo_usuario);
+            string json = new JavaScriptSerializer().Serialize(listaOrdernada);
             File.WriteAllText(path_usuario, json);
         }
 
