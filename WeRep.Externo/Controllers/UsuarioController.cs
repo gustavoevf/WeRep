@@ -31,5 +31,14 @@ namespace WeRep.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult NovoUsuario(UsuarioViewModel novoUsuario)
+        {
+            string nome = novoUsuario.nome;
+            string senha = novoUsuario.senha;
+
+            return RedirectToAction("VerPerfil", "Usuario");
+        }
     }
 }
