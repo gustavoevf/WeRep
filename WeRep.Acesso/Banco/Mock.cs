@@ -15,7 +15,6 @@ namespace Acesso.Banco
         List<MORADORES> lista_moradores;
         List<KANBAN> lista_kanban;
         List<CONTAS> lista_contas;
-        List<ADMINISTRADORES> lista_administradores;
 
         public void InserirRepublica(RepublicaModel republica_dados)
         {
@@ -25,9 +24,8 @@ namespace Acesso.Banco
             parametro.id_adm = republica_dados.id_adm;
             parametro.id_rep = republica_dados.id_rep;
             parametro.numero = republica_dados.numero;
-            parametro.numero_moradores = republica_dados.numero_moradores;
             parametro.rua = republica_dados.rua;
-            parametro.vagas = republica_dados.capacidade;
+            parametro.capacidade = republica_dados.capacidade;
             lista_republicas.Add(parametro);
             string lista_serial = new JavaScriptSerializer().Serialize(lista_republicas);
         }
@@ -77,14 +75,6 @@ namespace Acesso.Banco
             parametro.valor = conta_dados.valor;
             parametro.vencimento = conta_dados.vencimento;
             lista_contas.Add(parametro);
-        }
-
-        void InserirAdministrador(AdministradorModel administrador_dados)
-        {
-            ADMINISTRADORES parametro = new ADMINISTRADORES();
-            parametro.id = administrador_dados.id;
-            parametro.tipo = administrador_dados.tipo;
-            lista_administradores.Add(parametro);
         }
     }
 }

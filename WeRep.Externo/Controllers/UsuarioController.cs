@@ -12,7 +12,7 @@ namespace WeRep.Controllers
     public class UsuarioController : Controller
     {
         // GET: Usuario
-        public ActionResult Index(int id)
+        public ActionResult Index(int? id)
 
         {
             return View();
@@ -25,6 +25,11 @@ namespace WeRep.Controllers
             DTO.nome = User.ListarDadosPerfil(id_SESSION).nome;
             DTO.senha = User.ListarDadosPerfil(id_SESSION).senha;
             return View(DTO);
+        }
+
+        public ActionResult NovoUsuario()
+        {
+            return View();
         }
     }
 }
