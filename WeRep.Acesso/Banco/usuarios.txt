@@ -1,0 +1,7 @@
+[{
+	"id_rep":50,
+	"id_user": 1,
+	"nome":"alex",
+	"senha": "batman55",
+  "tipo": 1
+}]

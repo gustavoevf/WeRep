@@ -79,12 +79,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Banco\CONTAS.cs" />
-    <Compile Include="Banco\KANBAN.cs" />
     <Compile Include="Banco\Mock.cs" />
-    <Compile Include="Banco\MORADORES.cs" />
-    <Compile Include="Banco\REPUBLICAS.cs" />
-    <Compile Include="Banco\USUARIOS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsuarioDAL.cs" />
   </ItemGroup>

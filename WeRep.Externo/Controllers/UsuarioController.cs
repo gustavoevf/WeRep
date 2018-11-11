@@ -37,8 +37,9 @@ namespace WeRep.Controllers
         {
             string nome = novoUsuario.nome;
             string senha = novoUsuario.senha;
-
-            return RedirectToAction("VerPerfil", "Usuario");
+            UsuarioBLL Usuario = new UsuarioBLL();
+            Usuario.Cadastro(nome, senha);
+            return RedirectToAction("Index", "Home");
         }
     }
 }
