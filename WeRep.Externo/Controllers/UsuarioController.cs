@@ -14,15 +14,21 @@ namespace WeRep.Controllers
         public ActionResult Index()
         {
             var SessionObj = (UsuarioModel)Session["user"];
-            if (new UsuarioBLL().EstaLogado(SessionObj.nome, SessionObj.senha)) ;
-            return View();
+            if (SessionObj != null && new UsuarioBLL().EstaLogado(SessionObj.nome, SessionObj.senha))
+                return View();
+            else
+            {
+                Session["user"] = null;
+                return RedirectToAction("Falha", "Home");
+            }
         }
 
         public ActionResult VerPerfil()
         {
+            var SessionObj = (UsuarioModel)Session["user"];
             UsuarioBLL User = new UsuarioBLL();
             UsuarioViewModel DTO = new UsuarioViewModel();
-            UsuarioModel dadosListados = User.ListarDadosPerfil();
+            UsuarioModel dadosListados = User.ListarDadosPerfil(SessionObj.id_user.Value);
             DTO.nome = dadosListados.nome;
             DTO.senha = dadosListados.senha;
             return View(DTO);
@@ -39,7 +45,12 @@ namespace WeRep.Controllers
             string nome = novoUsuario.nome;
             string senha = novoUsuario.senha;
             UsuarioBLL Usuario = new UsuarioBLL();
-            Session["user"] = Usuario.Cadastro(nome, senha);
+            Usuario.Cadastro(nome, senha);
+
+            #region popula session
+            Session["user"] = Usuario.ListarDadosPerfil(nome, senha);
+            #endregion
+
             return RedirectToAction("Index");
         }
     }

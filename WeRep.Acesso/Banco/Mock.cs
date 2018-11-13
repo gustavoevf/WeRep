@@ -13,11 +13,8 @@ namespace Acesso.Banco
     public class Mock
     {
         string path_usuario = "\\txt\\usuarios.txt";
-        public void InserirRepublica(RepublicaModel republica_dados)
-        {
-        }
 
-        public UsuarioModel Cadastro(string nome, string senha)
+        public void Cadastro(string nome, string senha)
         {
             string readText = File.ReadAllText(path_usuario);
             List<UsuarioModel> lista;
@@ -33,16 +30,30 @@ namespace Acesso.Banco
             listaOrdernada.Add(novo_usuario);
             string json = new JavaScriptSerializer().Serialize(listaOrdernada);
             File.WriteAllText(path_usuario, json);
-            return novo_usuario;
         }
 
-        public UsuarioModel RetornarUsuario()
+        public UsuarioModel RetornarUsuario(int id)
         {
             string readText = File.ReadAllText(path_usuario);
             List<UsuarioModel> lista;
-            lista = new JavaScriptSerializer().Deserialize<List<UsuarioModel>>(readText);
+            if (readText == "")
+                lista = null;
+            else
+                lista = new JavaScriptSerializer().Deserialize<List<UsuarioModel>>(readText);
 
-            return lista[0];
-        } 
+            return lista.FirstOrDefault(x => x.id_rep == id);
+        }
+
+        public UsuarioModel RetornarUsuario(string nome, string senha)
+        {
+            string readText = File.ReadAllText(path_usuario);
+            List<UsuarioModel> lista;
+            if (readText == "")
+                lista = null;
+            else
+                lista = new JavaScriptSerializer().Deserialize<List<UsuarioModel>>(readText);
+
+            return lista.FirstOrDefault(x => x.nome == nome && x.senha == senha);
+        }
     }
 }

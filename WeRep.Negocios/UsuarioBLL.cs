@@ -11,21 +11,35 @@ namespace WeRep.Negocios
 {
     public class UsuarioBLL
     {
-        public UsuarioModel Cadastro(string nome, string senha)
+        public void Cadastro(string nome, string senha)
         {
             UsuarioDAL Usuario = new UsuarioDAL();
-            return Usuario.Cadastro(nome, senha);
+            Usuario.Cadastro(nome, senha);
         }
 
         public bool EstaLogado(string nome, string senha)
         {
-            return true;
+            if (nome == null || nome == "" || senha == null || senha == "")
+                return false;
+            return UsuarioExistente(nome, senha);
         }
 
-        public UsuarioModel ListarDadosPerfil()
+        public bool UsuarioExistente(string nome, string senha)
+        {
+            UsuarioDAL Validacao = new UsuarioDAL();
+            return Validacao.UsuarioExistente(nome, senha);
+        }
+
+        public UsuarioModel ListarDadosPerfil(int id)
         {
             UsuarioDAL usuario = new UsuarioDAL();
-            return usuario.ListarDadosPerfil();
+            return usuario.ListarDadosPerfil(id);
+        }
+
+        public UsuarioModel ListarDadosPerfil(string nome, string senha)
+        {
+            UsuarioDAL usuario = new UsuarioDAL();
+            return usuario.ListarDadosPerfil(nome, senha);
         }
     }
 }
