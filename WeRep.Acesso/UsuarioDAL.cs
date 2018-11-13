@@ -9,16 +9,16 @@ namespace Acesso
 {
     public class UsuarioDAL
     {
-        public void Cadastro(string nome, string senha)
+        public UsuarioModel Cadastro(string nome, string senha)
         {
             Mock Usuario = new Mock();
-            Usuario.Cadastro(nome, senha);
+            return Usuario.Cadastro(nome, senha);
         }
 
-        public UsuarioModel ListarDadosPerfil(int id)
+        public UsuarioModel ListarDadosPerfil()
         {
             Mock DB_FAKE = new Mock();
-            return DB_FAKE.RetornarUsuario(id);
+            return DB_FAKE.RetornarUsuario();
         }
     }
 }
