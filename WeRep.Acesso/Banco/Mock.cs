@@ -5,6 +5,8 @@ using System.Web;
 using WeRep.Models;
 using System.Web.Script.Serialization;
 using System.IO;
+using System.Text;
+using System.Web.Mvc;
 
 namespace Acesso.Banco
 {
@@ -48,10 +50,7 @@ namespace Acesso.Banco
             File.WriteAllText(path_republicas, json);
         }
 
-
-        // Lê o texto, armazena em uma lista, define o id do novo usuário (ordem crescente a partir do 1) e adiciona na lista e, 
-        // por fim, escreve o texto com o usuário adicionado
-        public void Cadastro(string nome, string senha)
+        public UsuarioModel Cadastro(string nome, string senha)
         {
             string readText = File.ReadAllText(path_usuario);
             List<UsuarioModel> lista;
@@ -69,13 +68,16 @@ namespace Acesso.Banco
             listaOrdernada.Add(novo_usuario);
             string json = new JavaScriptSerializer().Serialize(listaOrdernada);
             File.WriteAllText(path_usuario, json);
+            return novo_usuario;
         }
 
-        public UsuarioModel RetornarUsuario(int idt)
+        public UsuarioModel RetornarUsuario()
         {
-            string readText = File.ReadAllText("usuarios.txt");
-            return new UsuarioModel();
-        }
-        
+            string readText = File.ReadAllText(path_usuario);
+            List<UsuarioModel> lista;
+            lista = new JavaScriptSerializer().Deserialize<List<UsuarioModel>>(readText);
+
+            return lista[0];
+        } 
     }
 }
