@@ -86,9 +86,11 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Banco\Mock.cs" />
+    <Compile Include="KanbanDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepublicaDAL.cs" />
     <Compile Include="UsuarioDAL.cs" />
+    <Compile Include="Utilidades.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WeRep.Comum\WeRep.Comum.csproj">

@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Web;
 using WeRep.Models;
+using WeRep.Models.Models;
 using Acesso;
-using System.Web.SessionState;
 
 namespace WeRep.Negocios
 {
@@ -21,13 +21,19 @@ namespace WeRep.Negocios
         {
             if (nome == null || nome == "" || senha == null || senha == "")
                 return false;
-            return UsuarioExistente(nome, senha);
+            return UsuarioExistente(nome);
         }
 
-        public bool UsuarioExistente(string nome, string senha)
+        public bool UsuarioExistente(string nome)
         {
             UsuarioDAL Validacao = new UsuarioDAL();
-            return Validacao.UsuarioExistente(nome, senha);
+            return Validacao.UsuarioExistente(nome);
+        }
+
+        public bool UsuarioExistente(int id)
+        {
+            UsuarioDAL Validacao = new UsuarioDAL();
+            return Validacao.UsuarioExistente(id);
         }
 
         public UsuarioModel ListarDadosPerfil(int id)
@@ -36,10 +42,21 @@ namespace WeRep.Negocios
             return usuario.ListarDadosPerfil(id);
         }
 
-        public UsuarioModel ListarDadosPerfil(string nome, string senha)
+        public UsuarioModel ListarDadosPerfil(string nome)
         {
             UsuarioDAL usuario = new UsuarioDAL();
-            return usuario.ListarDadosPerfil(nome, senha);
+            return usuario.ListarDadosPerfil(nome);
+        }
+
+        public UsuarioViewModelDTO RelacaoUsuario(int id)
+        {
+            UsuarioDAL usuario = new UsuarioDAL();
+            return usuario.RelacaoUsuario(id);
+        }
+
+        public void AlterarTipo(int id, int tipo)
+        {
+            new UsuarioDAL().AlterarTipoUsuario(tipo, id);
         }
     }
 }

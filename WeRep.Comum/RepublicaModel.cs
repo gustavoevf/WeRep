@@ -15,6 +15,6 @@ namespace WeRep.Models
         public int numero { get; set; }
         public string complemento { get; set; }
         public int capacidade { get; set; }
-        List<int> moradores { get; set; }
+        public List<int> moradores { get; set; }
     }
 }

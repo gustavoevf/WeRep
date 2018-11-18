@@ -17,5 +17,10 @@ namespace WeRep.Controllers
                 return RedirectToAction("Index", "Usuario", new { id = 5 });
             return View();
         }
+
+        public ViewResult Falha()
+        {
+            return View();
+        }
     }
 }
