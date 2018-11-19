@@ -16,7 +16,7 @@ namespace WeRep.Controllers
         {
             var SessionObj = (UsuarioModel)Session["user"];
 
-            if(SessionObj==null)
+            if (SessionObj == null)
                 return RedirectToAction("Falha", "Home");
 
             UsuarioViewModel ViewModel = new UsuarioViewModel();
@@ -49,6 +49,35 @@ namespace WeRep.Controllers
             DTO.tipo = User.RelacaoUsuario(SessionObj.id_user.Value).tipo;
 
             return View(DTO);
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(UsuarioModel usuario)
+        {
+            List<Recursos.erroListagem> lista_erros = new List<Recursos.erroListagem>();
+
+            if (new UsuarioBLL().UsuarioExistente(usuario.nome))
+                if (!(new UsuarioBLL().ValidarLogin(usuario.nome, usuario.senha)))
+                    lista_erros.Add(Recursos.erroListagem.SenhaErrada);
+            else
+                lista_erros.Add(Recursos.erroListagem.UsuarioInexistente);
+
+            if(lista_erros.Count>0)
+            {
+                ViewBag.ErroLogin = lista_erros;
+                return RedirectToAction("Login");
+            }
+
+            #region popula session
+            Session["user"] = new UsuarioBLL().ListarDadosPerfil(usuario.nome);
+            #endregion
+
+            return RedirectToAction("Index");
         }
 
         public ActionResult NovoUsuario()

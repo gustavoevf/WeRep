@@ -21,19 +21,19 @@ namespace WeRep.Negocios
         {
             if (nome == null || nome == "" || senha == null || senha == "")
                 return false;
-            return UsuarioExistente(nome);
+            return new UsuarioDAL().RetornarUsuario(nome, senha).Count>0;
         }
 
         public bool UsuarioExistente(string nome)
         {
             UsuarioDAL Validacao = new UsuarioDAL();
-            return Validacao.UsuarioExistente(nome);
+            return Validacao.RetornarUsuario(nome).Count>0;
         }
 
         public bool UsuarioExistente(int id)
         {
             UsuarioDAL Validacao = new UsuarioDAL();
-            return Validacao.UsuarioExistente(id);
+            return Validacao.RetornarUsuario(id).Count > 0;
         }
 
         public UsuarioModel ListarDadosPerfil(int id)
@@ -57,6 +57,11 @@ namespace WeRep.Negocios
         public void AlterarTipo(int id, int tipo)
         {
             new UsuarioDAL().AlterarTipoUsuario(tipo, id);
+        }
+
+        public bool ValidarLogin(string nome, string senha)
+        {
+            return new UsuarioDAL().RetornarUsuario(nome, senha).Count > 0;
         }
     }
 }

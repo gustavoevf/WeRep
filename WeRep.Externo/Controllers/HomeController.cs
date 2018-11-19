@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WeRep.Negocios;
+using WeRep.Models;
 
 namespace WeRep.Controllers
 {
@@ -13,8 +15,10 @@ namespace WeRep.Controllers
             //Response.Cookies["log"].Value = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
             //Response.Cookies["log"].Expires = DateTime.Now.AddSeconds(30);
 
-            if (Request.Cookies["log"] != null && Request.Cookies["log"].Value == System.Security.Principal.WindowsIdentity.GetCurrent().Name)
-                return RedirectToAction("Index", "Usuario", new { id = 5 });
+            var SessionObj = (UsuarioModel)Session["user"];
+
+            if (SessionObj != null && new UsuarioBLL().EstaLogado(SessionObj.nome, SessionObj.senha))
+                return RedirectToAction("Index", "Usuario");
             return View();
         }
 

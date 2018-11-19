@@ -49,6 +49,15 @@ namespace Acesso
             return lista.Where(x => x.nome == nome).ToList();
         }
 
+        public List<UsuarioModel> RetornarUsuario(string nome, string senha)
+        {
+            List<UsuarioModel> lista = lerUsuarios();
+            if (lista.Count <= 0)
+                return new List<UsuarioModel>();
+
+            return lista.Where(x => x.nome == nome && x.senha == senha).ToList();
+        }
+
         public string RepublicaUsuario(int id)
         {
             var lista_usuario = lerUsuarios();
@@ -80,20 +89,6 @@ namespace Acesso
             if (RetornarUsuario(nome).Count <= 0)
                 return new UsuarioModel();
             return RetornarUsuario(nome).First();
-        }
-
-        public bool UsuarioExistente(int id)
-        {
-            if (RetornarUsuario(id).Count > 0)
-                return true;
-            return false;
-        }
-
-        public bool UsuarioExistente(string nome)
-        {
-            if (RetornarUsuario(nome).Count > 0)
-                return true;
-            return false;
         }
 
         public UsuarioViewModelDTO RelacaoUsuario(int id)

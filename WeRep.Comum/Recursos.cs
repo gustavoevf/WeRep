@@ -9,6 +9,6 @@ namespace WeRep.Models
     {
         public enum tipoUsuario { Inicial = 1, Morador, Administrador, AdministradorPresente };
         public enum corNome { Green = 1, Yellow, Red, Black, Blue, Pink };
-        public enum erroListagem { UsuarioJaExistente = 1 };
+        public enum erroListagem { UsuarioJaExistente = 1, UsuarioInexistente, SenhaErrada };
     }
 }
