@@ -24,8 +24,8 @@ namespace WeRep.Negocios
 
         public UsuarioModel ListarDadosPerfil()
         {
-            UsuarioDAL usuario = new UsuarioDAL();
-            return usuario.ListarDadosPerfil();
+            UsuarioDAL Usuario = new UsuarioDAL();
+            return Usuario.ListarDadosPerfil();
         }
     }
 }

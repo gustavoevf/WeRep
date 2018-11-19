@@ -16,9 +16,9 @@ namespace Acesso.Banco
         string path_republicas = "\\txt\\republicas.txt";
         string path_usuario = "\\txt\\usuarios.txt";
 
+        
         // Lê o texto, armazena em uma lista, define o id da nova republica (ordem crescente a partir do 1) e adiciona na lista e, 
-        // por fim, escreve o texto com a republica adicionada 
-         
+        // por fim, escreve o texto com a republica adicionada        
         public void InserirRepublica(RepublicaModel republica_dados)
         {
             string readText = File.ReadAllText(path_republicas);
@@ -50,6 +50,8 @@ namespace Acesso.Banco
             File.WriteAllText(path_republicas, json);
         }
 
+        // Lê o texto, armazena em uma lista, define o id do novo usuario (ordem crescente a partir do 1) e adiciona na lista e, 
+        // por fim, escreve o texto com o usuario adicionado, além de retornar o usuario
         public UsuarioModel Cadastro(string nome, string senha)
         {
             string readText = File.ReadAllText(path_usuario);
@@ -70,6 +72,7 @@ namespace Acesso.Banco
             File.WriteAllText(path_usuario, json);
             return novo_usuario;
         }
+
 
         public UsuarioModel RetornarUsuario()
         {

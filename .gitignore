@@ -259,3 +259,6 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+WeRep.Negocios/WeRep.Negocios.csproj
+WeRep.Acesso/WeRep.Acesso.csproj
+WeRep.Negocios/WeRep.Negocios.csproj
