@@ -9,17 +9,10 @@ namespace Acesso
 {
     public class KanbanDAL : Utilidades
     {
-        public void CriarKanban(string mensagem, int id_rep, DateTime vencimento, int cor)
+        public void CriarKanban(KanbanModel novo_kanban)
         {
             var lista = lerKanban();
 
-            KanbanModel novo_kanban = new KanbanModel
-            {
-                cor = cor,
-                mensagem = mensagem,
-                id_rep = id_rep,
-                vencimento = vencimento
-            };
             if (lista.Count > 0)
                 novo_kanban.id_nota = lista.Last().id_nota + 1;
             else

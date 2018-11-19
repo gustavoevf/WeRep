@@ -9,9 +9,9 @@ namespace WeRep.Negocios
 {
     public class KanabanBLL
     {
-        public void CriarKanban(string mensagem, int id_rep, DateTime vencimento, int cor)
+        public void CriarKanban(KanbanModel novo_kanban)
         {
-            new KanbanDAL().CriarKanban(mensagem, id_rep, vencimento, cor);
+            new KanbanDAL().CriarKanban(novo_kanban);
         }
 
         public List<KanbanModel> RetornarKanban(int id_rep, int? cor)

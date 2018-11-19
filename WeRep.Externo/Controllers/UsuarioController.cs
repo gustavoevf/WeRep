@@ -90,7 +90,7 @@ namespace WeRep.Controllers
         [HttpPost]
         public ActionResult NovoUsuario(UsuarioModel novoUsuario)
         {
-            if (!TratamentoCadastro(novoUsuario))
+            if (new UsuarioBLL().UsuarioExistente(novoUsuario.nome))
             {
                 ViewBag.ErroUsuario = Recursos.erroListagem.UsuarioJaExistente;
                 return View();
@@ -104,13 +104,6 @@ namespace WeRep.Controllers
             #endregion
 
             return RedirectToAction("Index");
-        }
-
-        public bool TratamentoCadastro(UsuarioModel novoUsuario)
-        {
-            if (new UsuarioBLL().UsuarioExistente(novoUsuario.nome))
-                return false;
-            return true;
         }
     }
 }
