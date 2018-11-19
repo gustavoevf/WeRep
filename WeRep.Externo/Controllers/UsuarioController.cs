@@ -62,8 +62,10 @@ namespace WeRep.Controllers
             List<Recursos.erroListagem> lista_erros = new List<Recursos.erroListagem>();
 
             if (new UsuarioBLL().UsuarioExistente(usuario.nome))
+            {
                 if (!(new UsuarioBLL().ValidarLogin(usuario.nome, usuario.senha)))
                     lista_erros.Add(Recursos.erroListagem.SenhaErrada);
+            }
             else
                 lista_erros.Add(Recursos.erroListagem.UsuarioInexistente);
 
