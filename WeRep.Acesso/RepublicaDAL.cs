@@ -9,20 +9,10 @@ namespace Acesso
 {
     public class RepublicaDAL : Utilidades
     {
-        public void CriarRepublica(string nome, int id_adm, string rua, string bairro, int numero, string complemento, int capacidade)
+        public void CriarRepublica(RepublicaModel nova_rep)
         {
             List<RepublicaModel> lista = lerRepublicas();
 
-            RepublicaModel nova_rep = new RepublicaModel
-            {
-                nome = nome,
-                bairro = bairro,
-                numero = numero,
-                rua = rua,
-                complemento = complemento,
-                capacidade = capacidade,
-                id_adm = id_adm
-            };
             if (lista.Count > 0)
                 nova_rep.id_rep = lista.Last().id_rep + 1;
             else
@@ -38,12 +28,19 @@ namespace Acesso
             lista.First(x => x.id_rep == id_rep).moradores.Add(id_user);
             Reescrever(typeof(RepublicaModel), new JavaScriptSerializer().Serialize(lista));
         }
-        
-        public List<RepublicaModel> RetornarRepublica(int id_adm, string nome)
+
+        public List<RepublicaModel> GetRepublicaAdm(int id_adm)
         {
             List<RepublicaModel> lista = lerRepublicas();
 
-            return lista.Where(x => (x.id_adm == id_adm && x.nome==nome)).ToList();
+            return lista.Where(x => (x.id_adm == id_adm)).ToList();
+        }
+
+        public List<RepublicaModel> RetornarRepublica(int id_rep)
+        {
+            List<RepublicaModel> lista = lerRepublicas();
+
+            return lista.Where(x => (x.id_rep == id_rep)).ToList();
         }
 
         public List<UsuarioModel> ProcurarMorador(int morador, int republica)

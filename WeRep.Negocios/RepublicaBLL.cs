@@ -9,15 +9,15 @@ namespace WeRep.Negocios
 {
     public class RepublicaBLL
     {
-        public void CadastrarRepublica(string nome, int id_adm, string rua, string bairro, int numero, string complemento, int capacidade, bool admPresente)
+        public void CadastrarRepublica(RepublicaModel nova_rep, bool admPresente)
         {
             try
             {
-                new RepublicaDAL().CriarRepublica(nome, id_adm, rua, bairro, numero, complemento, capacidade);
+                new RepublicaDAL().CriarRepublica(nova_rep);
                 if (admPresente)
-                    new RepublicaDAL().InserirMorador(id_adm, new RepublicaDAL().RetornarRepublica(id_adm, nome).First().id_rep);
-                if (admPresente) { new UsuarioBLL().AlterarTipo(id_adm, 4); }
-                else { new UsuarioBLL().AlterarTipo(id_adm, 3); }
+                    new RepublicaDAL().InserirMorador(nova_rep.id_adm, new RepublicaDAL().RetornarRepublica(nova_rep.id_adm, nova_rep.nome).First().id_rep);
+                if (admPresente) { new UsuarioBLL().AlterarTipo(nova_rep.id_adm, Recursos.tipoUsuario.AdministradorPresente.GetHashCode()); }
+                else { new UsuarioBLL().AlterarTipo(nova_rep.id_adm, Recursos.tipoUsuario.Administrador.GetHashCode()); }
             }
             catch (Exception e)
             {
@@ -51,6 +51,16 @@ namespace WeRep.Negocios
             {
                 throw e;
             }
+        }
+
+        public RepublicaModel RetornarRepublica(int id_rep)
+        {
+            return new RepublicaDAL().RetornarRepublica(id_rep).FirstOrDefault();
+        }
+
+        public List<RepublicaModel> GetRepublicasAdm(int id_adm)
+        {
+            return new RepublicaDAL().GetRepublicaAdm(id_adm);
         }
     }
 }
