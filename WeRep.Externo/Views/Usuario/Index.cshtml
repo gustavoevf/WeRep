@@ -1,7 +1,8 @@
 ﻿@{
     Layout = null;
 }
-
+@using WeRep.Models
+@model UsuarioViewModel
 <!DOCTYPE html>
 
 <html>
@@ -10,11 +11,9 @@
     <title>Index</title>
 </head>
 <body>
+    <p>Seja bem-vindo, @Model.nome</p>
     <div>
         @Html.ActionLink("Ver perfil", "VerPerfil")
-    </div>
-    <div>
-        @Html.ActionLink("Novo usuário","NovoUsuario")
     </div>
 </body>
 </html>

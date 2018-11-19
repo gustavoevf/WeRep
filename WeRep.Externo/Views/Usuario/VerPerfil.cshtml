@@ -8,12 +8,21 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript" src="~/Views/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ('@Model.republica' == "") {
+                $('#republica_label').html('Você ainda não está associado a nenhuma república :(')
+            }
+        });
+    </script>
     <title>VerPerfil</title>
 </head>
 <body>
     <div> 
-        @Model.nome
-        @Model.senha
+        <p>@Model.nome</p>
+        <p id="republica_label">@Model.republica</p>
+        <p>@Model.tipo</p>
     </div>
 </body>
 </html>

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WeRep.Negocios;
 using WeRep.Models;
+using WeRep.Models.Models;
 using System.Web.SessionState;
 
 namespace WeRep.Controllers
@@ -14,18 +15,69 @@ namespace WeRep.Controllers
         public ActionResult Index()
         {
             var SessionObj = (UsuarioModel)Session["user"];
-            if (new UsuarioBLL().EstaLogado(SessionObj.nome, SessionObj.senha)) ;
-            return View();
+
+            if (SessionObj == null)
+                return RedirectToAction("Falha", "Home");
+
+            UsuarioViewModel ViewModel = new UsuarioViewModel();
+            UsuarioViewModelDTO ViewModelDTO = new UsuarioViewModelDTO();
+
+            UsuarioBLL usuarioUtilidades = new UsuarioBLL();
+            ViewModelDTO = usuarioUtilidades.RelacaoUsuario(SessionObj.id_user.Value);
+
+            ViewModel.nome = SessionObj.nome;
+            ViewModel.republica = ViewModelDTO.republica;
+            ViewModel.tipo = ViewModelDTO.tipo;
+
+            if (new UsuarioBLL().EstaLogado(SessionObj.nome, SessionObj.senha))
+                return View(ViewModel);
+            else
+            {
+                Session["user"] = null;
+                return RedirectToAction("Falha", "Home");
+            }
         }
 
         public ActionResult VerPerfil()
         {
+            var SessionObj = (UsuarioModel)Session["user"];
             UsuarioBLL User = new UsuarioBLL();
             UsuarioViewModel DTO = new UsuarioViewModel();
-            UsuarioModel dadosListados = User.ListarDadosPerfil();
-            DTO.nome = dadosListados.nome;
-            DTO.senha = dadosListados.senha;
+
+            DTO.nome = User.ListarDadosPerfil(SessionObj.id_user.Value).nome;
+            DTO.republica = User.RelacaoUsuario(SessionObj.id_user.Value).republica;
+            DTO.tipo = User.RelacaoUsuario(SessionObj.id_user.Value).tipo;
+
             return View(DTO);
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(UsuarioModel usuario)
+        {
+            List<Recursos.erroListagem> lista_erros = new List<Recursos.erroListagem>();
+
+            if (new UsuarioBLL().UsuarioExistente(usuario.nome))
+                if (!(new UsuarioBLL().ValidarLogin(usuario.nome, usuario.senha)))
+                    lista_erros.Add(Recursos.erroListagem.SenhaErrada);
+            else
+                lista_erros.Add(Recursos.erroListagem.UsuarioInexistente);
+
+            if(lista_erros.Count>0)
+            {
+                ViewBag.ErroLogin = lista_erros;
+                return RedirectToAction("Login");
+            }
+
+            #region popula session
+            Session["user"] = new UsuarioBLL().ListarDadosPerfil(usuario.nome);
+            #endregion
+
+            return RedirectToAction("Index");
         }
 
         public ActionResult NovoUsuario()
@@ -34,13 +86,29 @@ namespace WeRep.Controllers
         }
 
         [HttpPost]
-        public ActionResult NovoUsuario(UsuarioViewModel novoUsuario)
+        public ActionResult NovoUsuario(UsuarioModel novoUsuario)
         {
+            if (!TratamentoCadastro(novoUsuario))
+            {
+                ViewBag.ErroUsuario = Recursos.erroListagem.UsuarioJaExistente;
+                return View();
+            }
             string nome = novoUsuario.nome;
             string senha = novoUsuario.senha;
-            UsuarioBLL Usuario = new UsuarioBLL();
-            Session["user"] = Usuario.Cadastro(nome, senha);
+            new UsuarioBLL().Cadastro(nome, senha);
+
+            #region popula session
+            Session["user"] = new UsuarioBLL().ListarDadosPerfil(nome);
+            #endregion
+
             return RedirectToAction("Index");
+        }
+
+        public bool TratamentoCadastro(UsuarioModel novoUsuario)
+        {
+            if (new UsuarioBLL().UsuarioExistente(novoUsuario.nome))
+                return false;
+            return true;
         }
     }
 }

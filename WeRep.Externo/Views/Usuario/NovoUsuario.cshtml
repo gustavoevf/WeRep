@@ -1,4 +1,5 @@
-﻿@model WeRep.Models.UsuarioViewModel
+﻿@using WeRep.Models
+@model UsuarioModel
 
 @{
     Layout = null;
@@ -22,6 +23,8 @@
                 <td>Nome: </td>
                 <td>
                     @Html.TextBoxFor(m => m.nome)
+                    @if (ViewBag.ErroUsuario == Recursos.erroListagem.UsuarioJaExistente)
+                    {<span style="color: red;">Usuario já existente, favor tentar novamente</span>}
                 </td>
             </tr>
             <tr>
