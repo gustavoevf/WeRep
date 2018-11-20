@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 14 for Web
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeRep.Acesso", "WeRep.Acesso\WeRep.Acesso.csproj", "{97B6700A-B9A6-450C-B7A1-EF241A939B58}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeRep.Externo", "WeRep.Externo\WeRep.Externo.csproj", "{8994C7E4-84F6-48DE-8B24-0B72594877BE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeRep.Negocios", "WeRep.Negocios\WeRep.Negocios.csproj", "{9FE8CABF-5DA2-4FFE-BDF3-89245A1F0985}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeRep.Testes", "WeRep.Testes\WeRep.Testes.csproj", "{DBB8AB6A-DF80-4316-9C2B-C0CDAC1599A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,8 +35,15 @@ Global
 		{9FE8CABF-5DA2-4FFE-BDF3-89245A1F0985}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FE8CABF-5DA2-4FFE-BDF3-89245A1F0985}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FE8CABF-5DA2-4FFE-BDF3-89245A1F0985}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBB8AB6A-DF80-4316-9C2B-C0CDAC1599A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBB8AB6A-DF80-4316-9C2B-C0CDAC1599A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBB8AB6A-DF80-4316-9C2B-C0CDAC1599A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBB8AB6A-DF80-4316-9C2B-C0CDAC1599A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D5EE4E9A-2831-4F72-8CFC-ED2B2501C989}
 	EndGlobalSection
 EndGlobal

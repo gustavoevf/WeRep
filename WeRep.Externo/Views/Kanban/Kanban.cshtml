@@ -1,0 +1,19 @@
+﻿@Model WeRep.Controllers.RetornarKanban() 
+@using WeRep.Models
+
+<div class="grid">
+    @if (Model != null)
+    {
+        @foreach (KanbanModel kanban in Model)
+        {
+            @if (kanban.vencimento > DateTime.Now)
+            {
+                <div class="kanban" style="background-color: @WeRep.Models.Recursos.cores[kanban.cor].ToLower()">
+                    <span>
+                        @kanban.mensagem
+                    </span>
+                </div>
+            }
+        }
+    }
+</div>
