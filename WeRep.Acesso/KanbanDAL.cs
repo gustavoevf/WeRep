@@ -36,12 +36,13 @@ namespace Acesso
             return lista;
         }
 
-        public List<KanbanModel> RetornarKanban(int id_rep, string texto)
+        public List<KanbanModel> RetornarKanban(int id_rep, string texto, int? cor)
         {
             var lista = lerKanban();
             lista.RemoveAll(x => x.id_rep != id_rep);
             lista.RemoveAll(x => x.vencimento < DateTime.Now);
-
+            if (cor != null)
+                lista.RemoveAll(x => x.cor != cor);
             List<KanbanModel> lista_filtrada = new List<KanbanModel>();
 
             foreach (KanbanModel item in lista)

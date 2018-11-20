@@ -19,9 +19,9 @@ namespace WeRep.Negocios
             return new KanbanDAL().RetornarKanban(id_rep, cor);
         }
 
-        public List<KanbanModel> RetornarKanban(int id_rep, string texto)
+        public List<KanbanModel> RetornarKanban(int id_rep, string texto, int? cor)
         {
-            return new KanbanDAL().RetornarKanban(id_rep, texto);
+            return new KanbanDAL().RetornarKanban(id_rep, texto, cor);
         }
     }
 }

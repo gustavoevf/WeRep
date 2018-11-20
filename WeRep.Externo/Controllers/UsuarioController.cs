@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using WeRep.Negocios;
 using WeRep.Models;
 using WeRep.Models.Models;
-using System.Web.SessionState;
 
 namespace WeRep.Controllers
 {
