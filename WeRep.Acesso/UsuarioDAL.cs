@@ -6,6 +6,7 @@ using WeRep.Models;
 using WeRep.Models.Models;
 using System.IO;
 using System.Web.Script.Serialization;
+using WeRep.Utilidades_namespc;
 
 namespace Acesso
 {
@@ -24,7 +25,7 @@ namespace Acesso
             Reescrever(typeof(UsuarioModel), new JavaScriptSerializer().Serialize(lista));
         }
 
-        public void AlterarTipoUsuario(int tipo, int id)
+        public void AlterarTipoUsuario(int id, int tipo)
         {
             List<UsuarioModel> lista = lerUsuarios();
             lista.First(x => x.id_user == id).tipo = tipo;
@@ -66,9 +67,9 @@ namespace Acesso
 
             var lista_republica = lerRepublicas();
 
-            if (lista_republica.Count <= 0)
+            if (lista_republica.Count <= 0 || !lista_republica.Any(x => x.id_rep == usuario.id_rep))
                 return "";
-            return lista_republica.FirstOrDefault(x => x.id_rep == usuario.id_rep).nome;
+            return lista_republica.First(x => x.id_rep == usuario.id_rep).nome;
         }
 
         public int TipoUsuario(int id)

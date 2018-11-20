@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using WeRep.Negocios;
 using WeRep.Models;
+using System.IO;
+using WeRep.Utilidades_namespc;
 
 namespace WeRep.Controllers
 {
@@ -12,6 +14,7 @@ namespace WeRep.Controllers
     {
         public ActionResult Index()
         {
+            new Utilidades().inicializarArquivos();
             var SessionObj = (UsuarioModel)Session["user"];
 
             if (SessionObj != null && new UsuarioBLL().EstaLogado(SessionObj.nome, SessionObj.senha))

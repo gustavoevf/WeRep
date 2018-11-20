@@ -126,6 +126,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\Falha.cshtml" />
     <Content Include="Views\Usuario\Login.cshtml" />
+    <Content Include="Views\Republica\CriarRepublica.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -136,9 +137,12 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Adm\" />
-    <Folder Include="Views\Republica\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WeRep.Acesso\WeRep.Acesso.csproj">
+      <Project>{97b6700a-b9a6-450c-b7a1-ef241a939b58}</Project>
+      <Name>WeRep.Acesso</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WeRep.Comum\WeRep.Comum.csproj">
       <Project>{1c0ea741-3490-40f0-820e-7b10d9e661e9}</Project>
       <Name>WeRep.Comum</Name>

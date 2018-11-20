@@ -3,6 +3,12 @@
 }
 @using WeRep.Models
 @model UsuarioViewModel
+
+@{
+    var attributes = new Dictionary<string, object>();
+    attributes.Add("target", "#content_republica");
+}
+
 <!DOCTYPE html>
 
 <html>
@@ -14,6 +20,15 @@
     <p>Seja bem-vindo, @Model.nome</p>
     <div>
         @Html.ActionLink("Ver perfil", "VerPerfil")
+        <br />
+        @if (Model.republica != "") { <span>@Html.ActionLink("Ver repúblicas", "Index", "Republica")</span> }
+        <br />
+        @Html.ActionLink("Criar república", "CriarRepublica", "Republica")
+        <br />
+        @if (Model.republicas_gerenciadas != null && Model.republicas_gerenciadas.Count > 0) { <span>@Html.ActionLink("Gerenciar repúblicas", "Gerenciador", "Republica")</span> }
+    </div>
+
+    <div id="content_republica">
     </div>
 </body>
 </html>

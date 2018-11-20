@@ -11,6 +11,7 @@ namespace WeRep.Negocios
     {
         public void CadastrarRepublica(RepublicaModel nova_rep)
         {
+            nova_rep.moradores = new List<int>();
             try
             {
                 new RepublicaDAL().CriarRepublica(nova_rep);

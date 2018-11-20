@@ -23,9 +23,13 @@ namespace WeRep.Controllers
         }
 
         [HttpPost]
-        public void CriarRepublica(RepublicaModel nova_rep)
+        public ActionResult CriarRepublica(RepublicaModel nova_rep)
         {
+            var session_user = (UsuarioModel)Session["user"];
+            nova_rep.id_adm = session_user.id_user.Value;
+
             new RepublicaBLL().CadastrarRepublica(nova_rep);
+            return RedirectToAction("Index", "Usuario");
         }
 
         public void InserirMorador(List<string> moradores, int id_rep)

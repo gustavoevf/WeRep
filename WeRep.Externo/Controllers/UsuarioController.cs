@@ -24,6 +24,11 @@ namespace WeRep.Controllers
             ViewModel.nome = SessionObj.nome;
             ViewModel.republica = ViewModelDTO.republica;
             ViewModel.tipo = ViewModelDTO.tipo;
+            ViewModel.republicas_gerenciadas = new List<int>();
+
+            if(new RepublicaBLL().GetRepublicasAdm(SessionObj.id_user.Value)!=null)
+                foreach(RepublicaModel republica in new RepublicaBLL().GetRepublicasAdm(SessionObj.id_user.Value))
+                    ViewModel.republicas_gerenciadas.Add(republica.id_rep);
 
             if (new UsuarioBLL().EstaLogado(SessionObj.nome, SessionObj.senha))
                 return View(ViewModel);

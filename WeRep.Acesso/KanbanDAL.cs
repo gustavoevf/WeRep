@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using WeRep.Models;
 using System.Web.Script.Serialization;
+using WeRep.Utilidades_namespc;
 
 namespace Acesso
 {

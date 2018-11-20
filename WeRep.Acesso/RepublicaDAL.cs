@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using WeRep.Models;
 using System.Web.Script.Serialization;
+using WeRep.Utilidades_namespc;
 
 namespace Acesso
 {
@@ -32,14 +33,16 @@ namespace Acesso
         public List<RepublicaModel> GetRepublicaAdm(int id_adm)
         {
             List<RepublicaModel> lista = lerRepublicas();
-
+            if (!lista.Any(x => (x.id_adm == id_adm)))
+                return new List<RepublicaModel>();
             return lista.Where(x => (x.id_adm == id_adm)).ToList();
         }
 
         public List<RepublicaModel> RetornarRepublica(int id_rep)
         {
             List<RepublicaModel> lista = lerRepublicas();
-
+            if (!lista.Any(x => (x.id_rep == id_rep)))
+                return new List<RepublicaModel>();
             return lista.Where(x => (x.id_rep == id_rep)).ToList();
         }
 

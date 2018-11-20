@@ -6,7 +6,7 @@ using System.IO;
 using WeRep.Models;
 using System.Web.Script.Serialization;
 
-namespace Acesso
+namespace WeRep.Utilidades_namespc
 {
     public class Utilidades
     {
@@ -14,6 +14,19 @@ namespace Acesso
         const string path_usuario = "\\txt\\usuarios.txt";
         const string path_republica = "\\txt\\republicas.txt";
         const string path_kanban = "\\txt\\kanban.txt";
+
+        public void inicializarArquivos()
+        {
+            if (!Directory.Exists("\\txt\\"))
+                Directory.CreateDirectory("\\txt\\");
+
+            if (!File.Exists(path_usuario))
+                File.Create(path_usuario);
+            if (!File.Exists(path_republica))
+                File.Create(path_republica);
+            if (!File.Exists(path_kanban))
+                File.Create(path_kanban);
+        }
 
         public List<UsuarioModel> lerUsuarios()
         {
