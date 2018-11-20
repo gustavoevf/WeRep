@@ -10,24 +10,27 @@ namespace WeRep.Controllers
 {
     public class RepublicaController : Controller
     {
-        public void CriarRepublica(RepublicaModel nova_rep, bool admPresente)
+        public ActionResult Index()
         {
-            new RepublicaBLL().CadastrarRepublica(nova_rep, admPresente);
+            var session_user = (UsuarioModel)Session["user"];
+            Session["republica"] = new RepublicaBLL().RetornarRepublica(session_user.id_rep.Value);
+            return View((RepublicaModel)Session["republica"]);
+        }
+
+        public ActionResult CriarRepublica()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public void CriarRepublica(RepublicaModel nova_rep)
+        {
+            new RepublicaBLL().CadastrarRepublica(nova_rep);
         }
 
         public void InserirMorador(List<string> moradores, int id_rep)
         {
             new RepublicaBLL().InserirMorador(moradores, id_rep);
-        }
-
-        public RepublicaModel RetornarRepublica(int id_rep)
-        {
-            return new RepublicaBLL().RetornarRepublica(id_rep);
-        }
-
-        public List<RepublicaModel> GetRepublicasAdm(int id_adm)
-        {
-            return new RepublicaBLL().GetRepublicasAdm(id_adm);
         }
     }
 }

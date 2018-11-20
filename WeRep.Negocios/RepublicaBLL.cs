@@ -9,13 +9,11 @@ namespace WeRep.Negocios
 {
     public class RepublicaBLL
     {
-        public void CadastrarRepublica(RepublicaModel nova_rep, bool admPresente)
+        public void CadastrarRepublica(RepublicaModel nova_rep)
         {
             try
             {
                 new RepublicaDAL().CriarRepublica(nova_rep);
-                if (admPresente)
-                    new RepublicaDAL().InserirMorador(nova_rep.id_adm, new RepublicaDAL().RetornarRepublica(nova_rep.id_adm).First().id_rep);
                 new UsuarioBLL().AlterarTipo(nova_rep.id_adm, Recursos.tipoUsuario.Administrador.GetHashCode());
             }
             catch (Exception e)
