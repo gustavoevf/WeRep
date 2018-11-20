@@ -15,9 +15,8 @@ namespace WeRep.Negocios
             {
                 new RepublicaDAL().CriarRepublica(nova_rep);
                 if (admPresente)
-                    new RepublicaDAL().InserirMorador(nova_rep.id_adm, new RepublicaDAL().RetornarRepublica(nova_rep.id_adm, nova_rep.nome).First().id_rep);
-                if (admPresente) { new UsuarioBLL().AlterarTipo(nova_rep.id_adm, Recursos.tipoUsuario.AdministradorPresente.GetHashCode()); }
-                else { new UsuarioBLL().AlterarTipo(nova_rep.id_adm, Recursos.tipoUsuario.Administrador.GetHashCode()); }
+                    new RepublicaDAL().InserirMorador(nova_rep.id_adm, new RepublicaDAL().RetornarRepublica(nova_rep.id_adm).First().id_rep);
+                new UsuarioBLL().AlterarTipo(nova_rep.id_adm, Recursos.tipoUsuario.Administrador.GetHashCode());
             }
             catch (Exception e)
             {
@@ -31,7 +30,7 @@ namespace WeRep.Negocios
             {
                 foreach (string morador in moradores)
                 {
-                    if(new RepublicaDAL().ProcurarMorador(new UsuarioBLL().ListarDadosPerfil(morador).id_user.Value, id_rep).Count<=0)
+                    if (new RepublicaDAL().ProcurarMorador(new UsuarioBLL().ListarDadosPerfil(morador).id_user.Value, id_rep).Count <= 0)
                         throw new Exception("O usuário " + morador + " já mora nessa república.");
                 }
 
@@ -43,7 +42,11 @@ namespace WeRep.Negocios
 
                 foreach (string morador in moradores)
                 {
-                    new UsuarioBLL().AlterarTipo(new UsuarioBLL().ListarDadosPerfil(morador).id_user.Value, 2);
+                    new UsuarioBLL().AlterarTipo(
+                        new UsuarioBLL().ListarDadosPerfil(morador).id_user.Value,
+                        new UsuarioBLL().ListarDadosPerfil(morador).tipo == Recursos.tipoUsuario.Administrador.GetHashCode() ? Recursos.tipoUsuario.Administrador.GetHashCode() : Recursos.tipoUsuario.Morador.GetHashCode()
+                        );
+
                     new RepublicaDAL().InserirMorador(new UsuarioDAL().RetornarUsuario(morador).First().id_user.Value, id_rep);
                 }
             }

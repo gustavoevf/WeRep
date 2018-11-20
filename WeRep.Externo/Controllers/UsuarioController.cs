@@ -69,7 +69,7 @@ namespace WeRep.Controllers
             else
                 lista_erros.Add(Recursos.erroListagem.UsuarioInexistente);
 
-            if(lista_erros.Count>0)
+            if (lista_erros.Count > 0)
             {
                 ViewBag.ErroLogin = lista_erros;
                 return RedirectToAction("Login");
