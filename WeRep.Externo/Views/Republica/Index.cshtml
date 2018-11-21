@@ -36,7 +36,12 @@
     <div>
         @if(session_rep.id_adm == session_user.id_user)
         {
-            @Html.ActionLink("Inserir morador", "InserirMorador", "Republica")
+            using (Html.BeginForm("InserirMorador", "Republica", FormMethod.Post))
+            {
+                <p><input type="text" name="morador" /></p>
+                <input type="hidden" name="id_rep" value="@session_rep.id_rep" />
+                <p><input type="submit" value="Inserir" /></p>
+            }
             <br />
             @Html.ActionLink("Inserir nota no Kanban", "InserirKanban", "Kanban")
         }

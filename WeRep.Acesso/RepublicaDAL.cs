@@ -28,6 +28,10 @@ namespace Acesso
             List<RepublicaModel> lista = lerRepublicas();
             lista.First(x => x.id_rep == id_rep).moradores.Add(id_user);
             Reescrever(typeof(RepublicaModel), new JavaScriptSerializer().Serialize(lista));
+
+            List<UsuarioModel> lista_users = lerUsuarios();
+            lista_users.First(x => x.id_user == id_user).id_rep = id_rep;
+            Reescrever(typeof(UsuarioModel), new JavaScriptSerializer().Serialize(lista_users));
         }
 
         public List<RepublicaModel> GetRepublicaAdm(int id_adm)
@@ -49,7 +53,9 @@ namespace Acesso
         public List<UsuarioModel> ProcurarMorador(int morador, int republica)
         {
             var lista = lerRepublicas();
-            return new UsuarioDAL().RetornarUsuario(lista.First(x => x.id_rep == republica).moradores.First(y => y == morador));
+            if (lista.First(x => x.id_rep == republica).moradores.Any(y => y == morador))
+                return new UsuarioDAL().RetornarUsuario(lista.First(x => x.id_rep == republica).moradores.First(y => y == morador));
+            else return new List<UsuarioModel>();
         }
     }
 }

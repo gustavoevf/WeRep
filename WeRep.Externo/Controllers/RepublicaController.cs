@@ -53,9 +53,12 @@ namespace WeRep.Controllers
             return RedirectToAction("Index", "Usuario");
         }
 
-        public void InserirMorador(List<string> moradores, int id_rep)
+        [HttpPost]
+        public ActionResult InserirMorador(string morador, int id_rep)
         {
-            new RepublicaBLL().InserirMorador(moradores, id_rep);
+            new RepublicaBLL().InserirMorador(morador, id_rep);
+
+            return RedirectToAction("Index");
         }
     }
 }
