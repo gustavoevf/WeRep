@@ -24,8 +24,6 @@
         @if (Model.republica != "") { <span>@Html.ActionLink("Ver república", "Index", "Republica")</span> }
         <br />
         @Html.ActionLink("Criar república", "CriarRepublica", "Republica")
-        <br />
-        @if (Model.republicas_gerenciadas != null && Model.republicas_gerenciadas.Count > 0) { <span>@Html.ActionLink("Gerenciar repúblicas", "Gerenciador", "Republica")</span> }
     </div>
 
     <div id="content_republica">

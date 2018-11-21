@@ -1,6 +1,8 @@
 ﻿@using WeRep.Models
 @model RepublicaViewModel
 @{
+    var session_rep = (RepublicaModel)Session["republica"];
+    var session_user = (UsuarioModel)Session["user"];
     Layout = null;
 }
 
@@ -29,6 +31,19 @@
             foreach(string morador in Model.moradores)
             { @morador <br /> }
         }
+    </div>
+    <br />
+    <div>
+        @if(session_rep.id_adm == session_user.id_user)
+        {
+            @Html.ActionLink("Inserir morador", "InserirMorador", "Republica")
+            <br />
+            @Html.ActionLink("Inserir nota no Kanban", "InserirKanban", "Kanban")
+        }
+    </div>
+
+    <div>
+        @Html.Partial("~/Views/Kanban/Kanban.cshml", Model.kanban)
     </div>
 </body>
 </html>

@@ -17,5 +17,6 @@ namespace WeRep.Models
         public List<string> moradores { get; set; }
         public string cidade { get; set; }
         public string estado { get; set; }
+        public List<KanbanModel> kanban { get; set; }
     }
 }

@@ -19,10 +19,9 @@ namespace WeRep.Controllers
 
             RepublicaViewModel viewModel = new RepublicaViewModel();
             viewModel.moradores = new List<string>();
-
+            viewModel.kanban = new KanbanBLL().RetornarKanban(session_rep.id_rep, null);
             if (session_rep != null)
             {
-
                 viewModel.adm = new UsuarioBLL().ListarDadosPerfil(session_rep.id_adm).nome;
                 viewModel.bairro = session_rep.bairro;
                 viewModel.capacidade = session_rep.capacidade;
