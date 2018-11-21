@@ -55,7 +55,7 @@ namespace WeRep.Negocios
 
         public void AlterarTipo(int id, int tipo)
         {
-            new UsuarioDAL().AlterarTipoUsuario(tipo, id);
+            new UsuarioDAL().AlterarTipoUsuario(id, tipo);
         }
 
         public bool ValidarLogin(string nome, string senha)

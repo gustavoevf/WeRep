@@ -5,6 +5,7 @@ using System.Web;
 using System.IO;
 using WeRep.Models;
 using System.Web.Script.Serialization;
+using System.Threading;
 
 namespace WeRep.Utilidades_namespc
 {
@@ -26,6 +27,7 @@ namespace WeRep.Utilidades_namespc
                 File.Create(path_republica);
             if (!File.Exists(path_kanban))
                 File.Create(path_kanban);
+            Thread.Sleep(100);
         }
 
         public List<UsuarioModel> lerUsuarios()
