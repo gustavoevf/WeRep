@@ -58,7 +58,7 @@ namespace WeRep.Controllers
         {
             new RepublicaBLL().InserirMorador(morador, id_rep);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { id = id_rep });
         }
     }
 }
