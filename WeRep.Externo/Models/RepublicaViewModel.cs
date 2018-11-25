@@ -7,6 +7,8 @@ namespace WeRep.Models
 {
     public class RepublicaViewModel
     {
+        public string mensagem_add { get; set; }
+        
         public int id { get; set; }
         public string nome { get; set; }
         public string adm { get; set; }
