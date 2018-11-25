@@ -18,6 +18,7 @@ namespace WeRep.Controllers
             var session_rep = (RepublicaModel)Session["republica"];
 
             RepublicaViewModel viewModel = new RepublicaViewModel();
+
             viewModel.moradores = new List<string>();
             viewModel.kanban = new KanbanBLL().RetornarKanban(session_rep.id_rep, null);
             if (session_rep != null)
@@ -36,6 +37,16 @@ namespace WeRep.Controllers
                     viewModel.moradores.Add(new UsuarioBLL().ListarDadosPerfil(morador).nome);
             }
 
+            if (Session["erro_insert_user"] != null)
+            {
+                viewModel.mensagem_add = Session["erro_insert_user"].ToString();
+                Session["erro_insert_user"] = null;
+                return View(viewModel);
+            }
+            else
+                viewModel.mensagem_add = "";
+
+            Session["erro_insert_user"] = null;
             return View(viewModel);
         }
 
@@ -57,7 +68,15 @@ namespace WeRep.Controllers
         [HttpPost]
         public ActionResult InserirMorador(string morador, int id_rep)
         {
-            new RepublicaBLL().InserirMorador(morador, id_rep);
+            try
+            {
+                new RepublicaBLL().InserirMorador(morador, id_rep);
+            }
+            catch(Exception e)
+            {
+                Session["erro_insert_user"] = e.Message;
+                return RedirectToAction("Index", new { id = id_rep });
+            }
 
             return RedirectToAction("Index", new { id = id_rep });
         }

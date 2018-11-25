@@ -41,11 +41,12 @@
             {
                 <p><input type="text" name="morador" /></p>
                 <input type="hidden" name="id_rep" value="@session_rep.id_rep" />
+                <span style="color: red;">@Model.mensagem_add</span>
                 <p><input type="submit" value="Inserir morador" /></p>
             }
             <br />
      
-            @Html.ActionLink("Inserir nota no Kanban", "InserirKanban", "Kanban", new { id = Model.id })
+            @Html.ActionLink("Inserir nota no Kanban", "InserirKanban", "Kanban", new { id = Model.id }, null)
         }
     </div>
     <div>
