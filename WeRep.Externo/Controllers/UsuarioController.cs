@@ -78,6 +78,11 @@ namespace WeRep.Controllers
 
             #region popula session
             Session["user"] = new UsuarioBLL().ListarDadosPerfil(usuario.nome);
+
+            List<RepublicaModel> republicas_relacionadas = new List<RepublicaModel>();
+            republicas_relacionadas.Add(new RepublicaBLL().RetornarRepublica(new UsuarioBLL().ListarDadosPerfil(usuario.nome).id_rep.Value));
+            republicas_relacionadas.AddRange(new RepublicaBLL().GetRepublicasAdm(new UsuarioBLL().ListarDadosPerfil(usuario.nome).id_user.Value));
+            Session["republicas_relacionadas"] = republicas_relacionadas;
             #endregion
 
             return RedirectToAction("Index");

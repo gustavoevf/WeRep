@@ -22,9 +22,9 @@ namespace WeRep.Controllers
             return View();
         }
 
-        public ViewResult Falha()
+        public ActionResult Falha()
         {
-            return View();
+            return RedirectToAction("Index");
         }
     }
 }

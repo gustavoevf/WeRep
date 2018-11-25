@@ -10,11 +10,11 @@ namespace WeRep.Controllers
 {
     public class RepublicaController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
             var session_user = (UsuarioModel)Session["user"];
 
-            Session["republica"] = new RepublicaBLL().RetornarRepublica(session_user.id_rep.Value);
+            Session["republica"] = new RepublicaBLL().RetornarRepublica(id);
             var session_rep = (RepublicaModel)Session["republica"];
 
             RepublicaViewModel viewModel = new RepublicaViewModel();

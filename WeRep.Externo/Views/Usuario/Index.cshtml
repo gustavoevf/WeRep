@@ -1,5 +1,7 @@
 ﻿@{
     Layout = null;
+    var republicas_relacionadas = (List<RepublicaModel>)Session["republicas_relacionadas"];
+    var republica_single = republicas_relacionadas.GroupBy(a => a.id_rep);
 }
 @using WeRep.Models
 @model UsuarioViewModel
@@ -21,7 +23,11 @@
     <div>
         @Html.ActionLink("Ver perfil", "VerPerfil")
         <br />
-        @if (Model.republica != "" || Model.tipo == Recursos.tipoUsuario.Administrador.ToString()) { <span>@Html.ActionLink("Ver república", "Index", "Republica")</span> }
+        @if (republicas_relacionadas.Count > 0)
+        {
+            foreach (var rep in republica_single.ToList())
+            {<span>@Html.ActionLink("Ver república", "Index", "Republica", new { id = rep.First().id_rep }, null )</span> <br />}
+        }
         <br />
         @Html.ActionLink("Criar república", "CriarRepublica", "Republica")
     </div>
