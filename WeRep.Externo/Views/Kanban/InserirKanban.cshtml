@@ -1,0 +1,47 @@
+﻿@using WeRep.Models
+@{
+    Layout = null;
+    var cores = new SelectList(Recursos.cores);
+}
+
+@model WeRep.Models.KanbanModel
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>NovaMensagem</title>
+</head>
+<body>
+    @using (Html.BeginForm("InserirKanban", "Kanban", FormMethod.Post))
+    {
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th colspan="2" align="center">Personalize sua mensagem</th>
+            </tr>
+            <tr>
+                <td>Cor: </td>
+                <td>
+                    @Html.ListBoxFor(m => m.cor, cores)
+                </td>
+            </tr>
+            <tr>
+                <td>Mensagem: </td>
+                <td>
+                    @Html.TextBoxFor(m => m.mensagem)
+                </td>
+            </tr>
+            <tr>
+                <td>Vencimento: </td>
+                <td>
+                    @Html.EditorFor(m => m.vencimento)
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Enviar" /></td>
+            </tr>
+        </table>
+    }
+</body>
+</html>
+
