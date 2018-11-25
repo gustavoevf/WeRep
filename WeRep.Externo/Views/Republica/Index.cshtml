@@ -1,5 +1,6 @@
 ﻿@using WeRep.Models
 @model RepublicaViewModel
+
 @{
     var session_rep = (RepublicaModel)Session["republica"];
     var session_user = (UsuarioModel)Session["user"];
@@ -43,11 +44,12 @@
                 <p><input type="submit" value="Inserir" /></p>
             }
             <br />
+     
             @Html.ActionLink("Inserir nota no Kanban", "InserirKanban", "Kanban")
         }
     </div>
-
     <div>
+        @Html.ActionLink("Ver o Kanban da república", "Index", "Kanban")
     </div>
 </body>
 </html>

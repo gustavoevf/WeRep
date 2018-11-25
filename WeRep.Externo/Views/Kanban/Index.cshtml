@@ -1,0 +1,21 @@
+﻿@model List<KanbanModel> 
+@using WeRep.Models
+
+<div class="grid">
+    @if (Model != null)
+    {
+        foreach (KanbanModel mensagem in Model)
+        {
+            if (mensagem.vencimento > DateTime.Now)
+            {
+                <div class="kanban" style="background-color: @WeRep.Models.Recursos.cores[mensagem.cor].ToLower()">
+                    <span>
+
+                        @mensagem.mensagem
+
+                    </span>
+                </div>
+            }
+        }
+    }
+</div>

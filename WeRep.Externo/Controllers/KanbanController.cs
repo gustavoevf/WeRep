@@ -12,14 +12,19 @@ namespace WeRep.Controllers
     {
         public List<KanbanModel> RetornarKanban()
         {
-            //void ObterNomeDaCor()
-            //{
 
-            //};
             var SessionObj = (UsuarioModel)Session["user"];
 
             var kanbanBLL = new KanbanBLL();
             return kanbanBLL.RetornarKanban((int)SessionObj.id_rep, null);
+        }
+
+        public ActionResult Index()
+        {
+            var SessionObj = (UsuarioModel)Session["user"];
+            var kanban = RetornarKanban();
+
+            return View(kanban);
         }
     }
 }
