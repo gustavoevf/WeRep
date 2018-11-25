@@ -41,7 +41,7 @@
             {
                 <p><input type="text" name="morador" /></p>
                 <input type="hidden" name="id_rep" value="@session_rep.id_rep" />
-                <p><input type="submit" value="Inserir" /></p>
+                <p><input type="submit" value="Inserir morador" /></p>
             }
             <br />
      
@@ -49,7 +49,7 @@
         }
     </div>
     <div>
-        @Html.ActionLink("Ver o Kanban da república", "Index", "Kanban")
+        @Html.ActionLink("Ver o Kanban da república", "Index", "Kanban", new { id = Model.id }, null)
     </div>
 </body>
 </html>

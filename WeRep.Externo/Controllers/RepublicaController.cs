@@ -31,6 +31,7 @@ namespace WeRep.Controllers
                 viewModel.nome = session_rep.nome;
                 viewModel.numero = session_rep.numero;
                 viewModel.rua = session_rep.rua;
+                viewModel.id = id;
                 foreach (int morador in session_rep.moradores)
                     viewModel.moradores.Add(new UsuarioBLL().ListarDadosPerfil(morador).nome);
             }

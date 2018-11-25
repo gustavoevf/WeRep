@@ -10,19 +10,15 @@ namespace WeRep.Controllers
 {
     public class KanbanController : Controller
     {
-        public List<KanbanModel> RetornarKanban()
+        public List<KanbanModel> RetornarKanban(int id_rep)
         {
-
-            var SessionObj = (UsuarioModel)Session["user"];
-
             var kanbanBLL = new KanbanBLL();
-            return kanbanBLL.RetornarKanban((int)SessionObj.id_rep, null);
+            return kanbanBLL.RetornarKanban(id_rep, null);
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            var SessionObj = (UsuarioModel)Session["user"];
-            var kanban = RetornarKanban();
+            var kanban = RetornarKanban(id);
 
             return View(kanban);
         }

@@ -2,6 +2,7 @@
     Layout = null;
     var republicas_relacionadas = (List<RepublicaModel>)Session["republicas_relacionadas"];
     var republica_single = republicas_relacionadas.GroupBy(a => a.id_rep);
+    var session_user = (UsuarioModel)Session["user"];
 }
 @using WeRep.Models
 @model UsuarioViewModel
@@ -26,7 +27,10 @@
         @if (republicas_relacionadas.Count > 0)
         {
             foreach (var rep in republica_single.ToList())
-            {<span>@Html.ActionLink("Ver república", "Index", "Republica", new { id = rep.First().id_rep }, null )</span> <br />}
+            {<span>@Html.ActionLink("Ver república", "Index", "Republica", new { id = rep.First().id_rep }, null )</span>
+            <span> - @rep.First().nome - </span>
+                if (session_user.id_user == rep.First().id_adm)
+                {<span> (administrador)</span> }<br />}
         }
         <br />
         @Html.ActionLink("Criar república", "CriarRepublica", "Republica")
