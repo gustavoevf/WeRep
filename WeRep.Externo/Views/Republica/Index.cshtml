@@ -46,11 +46,11 @@
             }
             <br />
      
-            @Html.ActionLink("Inserir nota no Kanban", "InserirKanban", "Kanban", new { id = Model.id }, null)
+            @Html.ActionLink("Inserir nota no Kanban", "InserirKanban", "Kanban", new { id_rep = Model.id }, null)
         }
     </div>
     <div>
-        @Html.ActionLink("Ver o Kanban da república", "Index", "Kanban", new { id = Model.id }, null)
+        @Html.ActionLink("Ver o Kanban da república", "Index", "Kanban", new { id_rep = Model.id }, null)
     </div>
 </body>
 </html>

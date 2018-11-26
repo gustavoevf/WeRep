@@ -18,9 +18,11 @@ namespace WeRep.Controllers
 
         public ActionResult InserirKanban(int id_rep)
         {
-            var session_rep = (int)Session["id_rep"];
+            Session["id_rep"] = id_rep;
 
-            return View(id_rep);
+            var viewModel = new KanbanModel();
+            viewModel.id_rep = id_rep;
+            return View(viewModel);
         }
 
         public ActionResult Index(int id_rep)
@@ -35,8 +37,9 @@ namespace WeRep.Controllers
         {
             var session_rep = (int)Session["id_rep"];
             msg.id_rep = session_rep;
-
-            return RedirectToAction("Index", "Kanban");
+            msg.vencimento = msg.vencimento.Date;
+            new KanbanBLL().CriarKanban(msg);
+            return RedirectToAction("Index", "Kanban", new { id_rep = msg.id_rep });
         }
 
         //private int CalcularCor(string cor)

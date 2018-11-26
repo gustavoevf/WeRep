@@ -23,7 +23,7 @@ namespace Acesso
             Reescrever(typeof(KanbanModel), new JavaScriptSerializer().Serialize(lista));
         }
 
-        public List<KanbanModel> RetornarKanban(int id_rep, int? cor)
+        public List<KanbanModel> RetornarKanban(int id_rep, string cor)
         //Se 'int? cor' == null, todas as cores devem ser retornadas
         {
             var lista = lerKanban();
@@ -37,7 +37,7 @@ namespace Acesso
             return lista;
         }
 
-        public List<KanbanModel> RetornarKanban(int id_rep, string texto, int? cor)
+        public List<KanbanModel> RetornarKanban(int id_rep, string texto, string cor)
         {
             var lista = lerKanban();
             lista.RemoveAll(x => x.id_rep != id_rep);

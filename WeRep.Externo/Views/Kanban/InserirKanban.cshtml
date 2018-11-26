@@ -2,9 +2,9 @@
 @{
     Layout = null;
     var cores = new SelectList(Recursos.cores);
-}
+    }
 
-@model WeRep.Models.KanbanModel
+    @model KanbanModel
 <!DOCTYPE html>
 
 <html>
@@ -22,13 +22,14 @@
             <tr>
                 <td>Cor: </td>
                 <td>
-                    @Html.ListBoxFor(m => m.cor, cores)
+                    @Html.HiddenFor(m => m.id_rep, new { @Value = Model.id_rep })
+                    @Html.DropDownListFor(m => m.cor, cores)
                 </td>
             </tr>
             <tr>
                 <td>Mensagem: </td>
                 <td>
-                    @Html.TextBoxFor(m => m.mensagem)
+                    @Html.TextAreaFor(m => m.mensagem)
                 </td>
             </tr>
             <tr>

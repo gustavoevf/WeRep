@@ -8,7 +8,7 @@
         {
             if (mensagem.vencimento > DateTime.Now)
             {
-                <div class="kanban" style="background-color: @WeRep.Models.Recursos.cores[mensagem.cor].ToLower()">
+                <div class="kanban" style="width: 20%; background-color: @mensagem.cor">
                     <span>
 
                         @mensagem.mensagem

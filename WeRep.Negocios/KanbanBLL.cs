@@ -14,12 +14,12 @@ namespace WeRep.Negocios
             new KanbanDAL().CriarKanban(novo_kanban);
         }
 
-        public List<KanbanModel> RetornarKanban(int id_rep, int? cor)
+        public List<KanbanModel> RetornarKanban(int id_rep, string cor)
         {
             return new KanbanDAL().RetornarKanban(id_rep, cor);
         }
 
-        public List<KanbanModel> RetornarKanban(int id_rep, string texto, int? cor)
+        public List<KanbanModel> RetornarKanban(int id_rep, string texto, string cor)
         {
             return new KanbanDAL().RetornarKanban(id_rep, texto, cor);
         }
